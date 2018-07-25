@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;    
+        }
+        .box{
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>{{ session['num'] }}</h3>
+    <h1>Welcome to The Great Number Game</h1>
+    <h4>I'm thinking of a number between 1 and 100.</h4>
+    <h4>Take a Guess!</h4>
+    {% if result == "high" %}
+    <div class="red">Too High</div>
+    {% elif result == "low" %}
+    <div class="red">Too Low</div>
+    {% elif result == "num" %}
+    <div class="green">Got got it! {{ session['num'] }} was the number!</div>
+    {% endif %}
+    <form action='/guess', method='POST'>
+        <input type="text", name="guess">
+        <input type="submit", value="submit">
+    </form>
+    <button><a href='/reset'>Reset</a></button>
+    <p>session number - computer: {{ session['num']}}</p>
+    <p>guessed number: {{ guess }}</p>
+    <p>session result: {{ session['result'] }}</p>
+</body>
+</html>
